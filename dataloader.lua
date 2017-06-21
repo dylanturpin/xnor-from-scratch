@@ -1,7 +1,7 @@
 local D = {}
 
 function D:loadDataIntoMemory()
-   self.dataLoadedFromMatFile = mattorch.load('/home/dylanturpin/data/sketchANet/lua_dataset_without_order_info_256.mat')
+   self.dataLoadedFromMatFile = mattorch.load('/u/dylanturpin/data/sketchANet/lua_dataset_without_order_info_256.mat')
 end
 
 local trainHook = function(input)
@@ -44,6 +44,9 @@ function D:randomlySampleTrainingData(quantity)
       scalarLabels[i] = self.dataLoadedFromMatFile.trainLabels[randomIndex]
    end
 
+   
+   data = data:cuda()
+   scalarLabels = scalarLabels:cuda()
    
    return data, scalarLabels
 

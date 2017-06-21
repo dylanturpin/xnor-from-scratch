@@ -1,7 +1,10 @@
+require 'cutorch'
 require 'nn'
+require 'cudnn'
 require 'mattorch'
 require 'image'
 require 'optim'
+require 'cunn'
 
 debugger = require 'fb.debugger'
 
@@ -9,7 +12,7 @@ local utils = require 'utils'
 
 nClasses = 250
 nChannels = 1
-batchSize = 100
+batchSize = 100 
 sampleSize = {1,225,225}
 
 local net, criterion = require 'models/sketchanet' ()
@@ -41,7 +44,7 @@ for i = 1,10 do
 
    local pred = outputs
 
-   local top1, top5 = util.computeScore(pred, labels)
+   local top1, top5 = utils.computeScore(pred, labels)
    top1Sum = top1Sum + top1
 
    print(('%f\n'):format(top1Sum/i))
