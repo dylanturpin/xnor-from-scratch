@@ -1,5 +1,6 @@
 local net = nn.Sequential();
 net:add(cudnn.SpatialConvolution(nChannels,64,15,15,3,3,0,0))
+-- inplace is set to true for all relus to save memory
 net:add(cudnn.ReLU(true))
 net:add(nn.SpatialMaxPooling(3,3,2,2))
 net:add(cudnn.SpatialConvolution(64,128,5,5,1,1,0,0))      
